@@ -4,6 +4,11 @@ gr-j2497 contains a flow graph with a custom block for reading PLC4TRUCKS traffi
 
 This project is an implementation of a J2497 (PLC4TRUCKS) receiver that can be used with any GNU Radio SDR capable of receiving 100KHz - 400 KHz. For RTL-SDR and others this will require an upconverter.
 
+# Prerequisites
+```
+sudo apt-get install python-scipy
+```
+
 # Installation
 ```
 cd gr-j2497
