@@ -108,9 +108,9 @@ class j2497_decoder_for_tagger(gr.sync_block):
 
                 # Print to Output Port
                 self.message_port_pub(pmt.intern("out"), pmt.to_pmt(get_message))
-                
+
                 # Send Message to UDP Port
-                if self.do_udp:
+                if self.do_udp and len(get_message_hex) > 0:
                     self.sendUDP(get_message_hex)
 
             # Reset
