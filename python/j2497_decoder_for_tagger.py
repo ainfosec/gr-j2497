@@ -75,7 +75,7 @@ class j2497_decoder_for_tagger(gr.sync_block):
                 burst_size = self.end_tag - self.start_tag
 
                 # Perfect Size
-                if burst_size > 4000 and burst_size < 25000:  # 1 Sync + 1 MID + 20? Characters + 1 Checksum + Gap = 23 characters * 10 bits * 100 us = 23000 + Gap
+                if burst_size > 4000 and burst_size < 50000:  # 1 Sync + 1 MID + 20? Characters + 1 Checksum + Gap = 23 characters * 10 bits * 100 us = 23000 + Gap
                     self.do_analysis = True
 
                     # Multiple Windows
@@ -93,7 +93,7 @@ class j2497_decoder_for_tagger(gr.sync_block):
                     self.if_data = numpy.array([], dtype=numpy.float32)
 
         # Whole Window with no Stop Tag
-        if len(tags) == 0 and len(self.if_data) < 25000 and len(self.if_data) > 0:
+        if len(tags) == 0 and len(self.if_data) < 50000 and len(self.if_data) > 0:
             self.if_data = numpy.append(self.if_data, in0)
 
         # Do Analysis on all the Data
