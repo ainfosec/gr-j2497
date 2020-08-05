@@ -1,6 +1,6 @@
 # gr-j2497
 
-gr-j2497 contains a flow graph with a custom block for reading PLC4TRUCKS traffic.
+gr-j2497 contains flow graphs with custom blocks for reading PLC4TRUCKS traffic.
 
 This project is an implementation of a J2497 (PLC4TRUCKS) receiver that can be used with any GNU Radio SDR capable of receiving 100KHz - 400 KHz. For RTL-SDR and others this will require an upconverter.
 
@@ -19,6 +19,9 @@ make
 sudo make install
 sudo ldconfig
 ```
+
+# Usage
+Run the flow graphs in */examples* with GNU Radio Companion to view messages in the console panel. If enabled on the decoder blocks, view messages sent over UDP with a network sniffer (e.g. Wireshark).
 
 # License
 
