@@ -1,10 +1,10 @@
 # gr-j2497
 
-gr-j2497 contains flow graphs with custom blocks for reading PLC4TRUCKS traffic.
+The gr-j2497 out-of-tree module contains flow graphs with custom blocks for reading PLC4TRUCKS traffic.
 
-This project is an implementation of a J2497 (PLC4TRUCKS) receiver that can be used with any GNU Radio SDR capable of receiving 100KHz - 400 KHz. For RTL-SDR and others this will require an upconverter.
+This project is an implementation of a J2497 (PLC4TRUCKS) receiver that can be used with any GNU Radio SDR capable of receiving 100KHz - 400 KHz. For RTL-SDR and others, this will require an upconverter.
 
-The custom blocks send UDP packets that are compatible with the `j1708_logger.py` script for https://github.com/TruckHacking/py-hv-networks and the `j1708dump.py` command of https://github.com/TruckHacking/plc4trucksduck. e.g. you can dump PLC traffic with `j1708dump.py --interface=plc` while running the flow graphs in `examples/`
+The custom blocks send UDP packets that are compatible with the `j1708_logger.py` script for https://github.com/TruckHacking/py-hv-networks and the `j1708dump.py` command of https://github.com/TruckHacking/plc4trucksduck, e.g. you can dump PLC traffic with `j1708dump.py --interface=plc` while running the flow graphs in `/examples`.
 
 
 # Prerequisites
@@ -28,23 +28,23 @@ sudo ldconfig
 
 # Usage
 
-Run the flow graphs in */examples* with GNU Radio Companion to view messages in the console panel. If enabled on the decoder blocks, view messages sent over UDP with a network sniffer (e.g. Wireshark) or with `j1708dump.py --interface=plc` command of https://github.com/TruckHacking/plc4trucksduck
+Run the flow graphs in `/examples` with GNU Radio Companion to view messages in the console panel. If enabled on the decoder blocks, view the decoded output over UDP with a network sniffer (e.g. Wireshark) or with the `j1708dump.py --interface=plc` command of https://github.com/TruckHacking/plc4trucksduck.
 
-* Method 1
-  * Phase angle measurement and detecting spikes doesn’t work well in moderate to high noise environments.
-  * Correlate with a reference signal
-  * Works best at 203kHz
-  * Ignore the ASK preamble
+* Method 1:
+  * Correlates J2497 signal with a reference signal
+  * Works best with 203 kHz as the reference
+  * Ignores the ASK preamble
+  * Works better than phase-angle measurements in moderate to high noise environments
 
-* Method 2
-  * Corr whole signal to detect burst start and stop
-  * Corr 200kHz snippet to decode 0 and 1 in the body PSK
+* Method 2:
+  * Correlates J2497 signal with a complete chirp reference signal to detect burst start and stop
+  * Correlates with 203 kHz snippet to decode 0's and 1's in the body PSK
+  * Ignores the ASK preamble
   * Works good in medium levels of noise
-  * Ignore the ASK preamble
 
-* Method 3
-  * Using Quadrature Demod and measuring the phase-angle of the signal
-  * Changes in phase results in phase discontinuities
+* Method 3:
+  * Uses Quadrature Demod block and measures the phase-angle of the signal
+  * Keys in on phase discontinuities between chirps to decode the body PSK
   * Ignores the ASK preamble
 
 
