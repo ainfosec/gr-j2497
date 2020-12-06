@@ -2,6 +2,8 @@
 
 The gr-j2497 out-of-tree module contains flow graphs with custom blocks for reading PLC4TRUCKS traffic.
 
+The master branch is compatible with GNU Radio 3.7 and the maint-3.8 branch is compatible with GNU Radio 3.8.
+
 This project is an implementation of a J2497 (PLC4TRUCKS) receiver that can be used with any GNU Radio SDR capable of receiving 100 kHz - 400 kHz. For RTL-SDR and others, this will require an upconverter.
 
 The custom blocks send UDP packets that are compatible with the `j1708_logger.py` script for https://github.com/TruckHacking/py-hv-networks and the `j1708dump.py` command of https://github.com/TruckHacking/plc4trucksduck, e.g. you can dump PLC traffic with `j1708dump.py --interface=plc` while running the flow graphs in `/examples`.
