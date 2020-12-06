@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2019 <+YOU OR YOUR COMPANY+>.
+# Copyright 2020 gr-j2497 author.
 #
 # This is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 # the Free Software Foundation, Inc., 51 Franklin Street,
 # Boston, MA 02110-1301, USA.
 #
+
 
 import numpy
 from gnuradio import gr
@@ -129,7 +130,7 @@ class J2497_decoder(gr.sync_block):
         reference_sample = -8       # Bottom of the Peak
 
         # Calculate Expected Number of Bits
-        num_bits = len(self.if_data)/interval
+        num_bits = int(len(self.if_data)/interval)
 
         # Parse the IF Data
         bitstream = "1"
@@ -137,7 +138,7 @@ class J2497_decoder(gr.sync_block):
 
             # Phase Change
             if self.if_data[initial_offset+n*interval] - self.if_data[initial_offset+n*interval+reference_sample] > self.if_peak_threshold:
-                if bitstream[-1] is "1":
+                if bitstream[-1] == "1":
                     bitstream = bitstream + "0"
                 else:
                     bitstream = bitstream + "1"
@@ -178,7 +179,7 @@ class J2497_decoder(gr.sync_block):
 
             # Detect New Start Bit
             else:                
-                if bits[n] is "0" and start_bit is False:
+                if bits[n] == "0" and start_bit is False:
                     start_bit = True
 
         # Get Fields from Data Bits
@@ -199,7 +200,7 @@ class J2497_decoder(gr.sync_block):
             if len(data) % 8 == 0:
 
                 # Order Bytes Correctly from Reversed Bitstream
-                wrong_hex_order = ('%0*X' % (2,int(data[::-1],2))).zfill(len(data)/4)
+                wrong_hex_order = ('%0*X' % (2,int(data[::-1],2))).zfill(int(len(data)/4))
                 correct_hex_order = ""
                 for m in range(0,len(wrong_hex_order),2):
                     correct_hex_order = wrong_hex_order[m:m+2] + correct_hex_order

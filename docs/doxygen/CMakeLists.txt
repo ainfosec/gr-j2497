@@ -19,29 +19,35 @@
 # Boston, MA 02110-1301, USA.
 
 ########################################################################
-# Include python install macros
+# Create the doxygen configuration file
 ########################################################################
-include(GrPython)
-if(NOT PYTHONINTERP_FOUND)
-    return()
-endif()
+file(TO_NATIVE_PATH ${CMAKE_SOURCE_DIR} top_srcdir)
+file(TO_NATIVE_PATH ${CMAKE_BINARY_DIR} top_builddir)
+file(TO_NATIVE_PATH ${CMAKE_SOURCE_DIR} abs_top_srcdir)
+file(TO_NATIVE_PATH ${CMAKE_BINARY_DIR} abs_top_builddir)
+
+set(HAVE_DOT ${DOXYGEN_DOT_FOUND})
+set(enable_html_docs YES)
+set(enable_latex_docs NO)
+set(enable_xml_docs YES)
+
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in
+    ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+@ONLY)
+
+set(BUILT_DIRS ${CMAKE_CURRENT_BINARY_DIR}/xml ${CMAKE_CURRENT_BINARY_DIR}/html)
 
 ########################################################################
-# Install python sources
+# Make and install doxygen docs
 ########################################################################
-GR_PYTHON_INSTALL(
-    FILES
-    __init__.py
-    j2497_decoder_for_tagger.py
-    j2497_tagger.py
-    J2497_decoder.py
-    J2497_decoder_corr.py DESTINATION ${GR_PYTHON_DIR}/j2497
+add_custom_command(
+    OUTPUT ${BUILT_DIRS}
+    COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    COMMENT "Generating documentation with doxygen"
 )
 
-########################################################################
-# Handle the unit tests
-########################################################################
-include(GrTest)
+add_custom_target(doxygen_target ALL DEPENDS ${BUILT_DIRS})
 
-set(GR_TEST_TARGET_DEPS gnuradio-j2497)
-set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
+install(DIRECTORY ${BUILT_DIRS} DESTINATION ${GR_PKG_DOC_DIR})
