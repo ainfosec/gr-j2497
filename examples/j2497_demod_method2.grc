@@ -36,7 +36,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: np.hstack((chirp(np.linspace(0E-6,33E-6,33E-6*samp_rate),f0=203E3,f1=203E3,t1=33E-6,phi=-90,method='linear')*1))[::-1]
+    value: np.hstack((chirp(np.linspace(0E-6,33E-6,int(33E-6*samp_rate)),f0=203E3,f1=203E3,t1=33E-6,phi=-90,method='linear')*1))[::-1]
   states:
     bus_sink: false
     bus_source: false
@@ -48,7 +48,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: np.hstack((chirp(np.linspace(0E-6,33E-6,33E-6*samp_rate),f0=100E3,f1=203E3,t1=33E-6,phi=-90,method='linear')*1))[::-1]
+    value: np.hstack((chirp(np.linspace(0E-6,33E-6,int(33E-6*samp_rate)),f0=100E3,f1=203E3,t1=33E-6,phi=-90,method='linear')*1))[::-1]
   states:
     bus_sink: false
     bus_source: false
@@ -84,7 +84,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: (np.hstack((chirp(np.linspace(0,63E-6,63E-6*samp_rate),f0=203E3,f1=400E3,t1=63E-6,phi=0,method='linear')*1,chirp(np.linspace(63E-6,67E-6,4E-6*samp_rate),f0=400E3,f1=100E3,t1=67E-6,phi=0,method='linear')*1,chirp(np.linspace(67E-6,100E-6,33E-6*samp_rate),f0=100E3,f1=203E3,t1=100E-6,phi=-90,method='linear')*1)))[::-1]
+    value: (np.hstack((chirp(np.linspace(0,63E-6,int(63E-6*samp_rate)),f0=203E3,f1=400E3,t1=63E-6,phi=0,method='linear')*1,chirp(np.linspace(63E-6,67E-6,int(4E-6*samp_rate)),f0=400E3,f1=100E3,t1=67E-6,phi=0,method='linear')*1,chirp(np.linspace(67E-6,100E-6,int(33E-6*samp_rate)),f0=100E3,f1=203E3,t1=100E-6,phi=-90,method='linear')*1)))[::-1]
   states:
     bus_sink: false
     bus_source: false
@@ -1001,7 +1001,7 @@ blocks:
     nchan: '1'
     num_mboards: '1'
     sample_rate: samp_rate*2
-    sync: ''
+    sync: sync
     time_source0: ''
     time_source1: ''
     time_source2: ''
@@ -1425,6 +1425,7 @@ connections:
 - [fir_filter_xxx_1_0_0_0, '0', analog_rail_ff_0, '0']
 - [fir_filter_xxx_1_0_0_0_0, '0', j2497_j2497_decoder_for_tagger_0, '0']
 - [fir_filter_xxx_1_0_0_0_0, '0', qtgui_time_sink_x_0_0_0_0, '0']
+- [freq_xlating_fir_filter_xxx_0, '0', blocks_throttle_0, '0']
 - [j2497_j2497_decoder_for_tagger_0, out, blocks_message_debug_0, print]
 - [j2497_j2497_tagger_0, '0', fft_filter_xxx_0, '0']
 - [j2497_j2497_tagger_0, '0', qtgui_time_sink_x_0_0_0_0_0, '0']

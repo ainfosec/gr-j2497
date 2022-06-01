@@ -1139,7 +1139,7 @@ blocks:
     nchan: '1'
     num_mboards: '1'
     sample_rate: samp_rate*2
-    sync: ''
+    sync: sync
     time_source0: ''
     time_source1: ''
     time_source2: ''
@@ -1569,6 +1569,7 @@ connections:
 - [fir_filter_xxx_0_0, '0', qtgui_time_sink_x_0_0_1, '0']
 - [fir_filter_xxx_1, '0', blocks_threshold_ff_0, '0']
 - [fir_filter_xxx_1, '0', qtgui_time_sink_x_0_0_0_2, '0']
+- [freq_xlating_fir_filter_xxx_0, '0', blocks_throttle_0, '0']
 - [j2497_J2497_decoder_0, out, blocks_message_debug_0, print]
 - [rtlsdr_source_0, '0', freq_xlating_fir_filter_xxx_0, '0']
 - [uhd_usrp_source_0, '0', freq_xlating_fir_filter_xxx_0, '0']

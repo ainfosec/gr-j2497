@@ -36,7 +36,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: np.hstack((chirp(np.linspace(0E-6,33E-6,33E-6*samp_rate),f0=100E3,f1=203E3,t1=33E-6,phi=-90,method='linear')*1))[::-1]
+    value: np.hstack((chirp(np.linspace(0E-6,33E-6,int(33E-6*samp_rate)),f0=100E3,f1=203E3,t1=33E-6,phi=-90,method='linear')*1))[::-1]
   states:
     bus_sink: false
     bus_source: false
@@ -48,7 +48,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: np.hstack((chirp(np.linspace(0E-6,33E-6,33E-6*samp_rate),f0=203E3,f1=203E3,t1=33E-6,phi=-90,method='linear')*1))[::-1]
+    value: np.hstack((chirp(np.linspace(0E-6,33E-6,int(33E-6*samp_rate)),f0=203E3,f1=203E3,t1=33E-6,phi=-90,method='linear')*1))[::-1]
   states:
     bus_sink: false
     bus_source: false
@@ -1054,7 +1054,7 @@ blocks:
     nchan: '1'
     num_mboards: '1'
     sample_rate: samp_rate*2
-    sync: ''
+    sync: sync
     time_source0: ''
     time_source1: ''
     time_source2: ''
@@ -1479,6 +1479,7 @@ connections:
 - [fft_filter_xxx_0, '0', blocks_complex_to_mag_squared_0_0, '0']
 - [fir_filter_xxx_1_0, '0', blocks_threshold_ff_0_0, '0']
 - [fir_filter_xxx_1_0, '0', qtgui_time_sink_x_0_0_0_3_0_0_0, '0']
+- [freq_xlating_fir_filter_xxx_0, '0', blocks_throttle_0, '0']
 - [j2497_J2497_decoder_corr_0, out, blocks_message_debug_0, print]
 - [rtlsdr_source_0, '0', freq_xlating_fir_filter_xxx_0, '0']
 - [uhd_usrp_source_0, '0', freq_xlating_fir_filter_xxx_0, '0']
