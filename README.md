@@ -10,7 +10,7 @@ The primary purpose for J2497 is monitoring and reporting trailer ABS status to 
 - https://www.cisa.gov/uscert/ics/advisories/icsa-22-063-01
 - https://nvd.nist.gov/vuln/detail/CVE-2022-25922
 
-J2497 trailer receivers are susceptible to remote RF induced signals. As trailers and their power lines can be found in many configurations and sizes, the physical geometry and other electromagnetic factors will determine how well a system can receive the induced signals. More information can be found at:
+J2497 trailer receivers are susceptible to remote RF induced signals. As trailers and their power lines can be found in many configurations and sizes, the physical geometry and other electromagnetic factors will determine how well a system can receive the induced signals. More information is available at:
 - https://www.cisa.gov/uscert/ics/advisories/icsa-22-063-01
 - https://nvd.nist.gov/vuln/detail/CVE-2022-26131
 - https://www.securityweek.com/tractor-trailer-brake-controllers-vulnerable-remote-hacker-attacks
@@ -28,8 +28,6 @@ The gr-j2497 maint-3.7 branch is compatible with GNU Radio 3.7 and the maint-3.8
 This project is an implementation of a J2497 (PLC4TRUCKS) receiver that can be used with any GNU Radio SDR capable of receiving 100 kHz - 400 kHz. For RTL-SDR and others, this will require an upconverter. Below is an example receiver configuration using an active antenna, Ham It Up, and an RTL-SDR to upconvert the signals to 125 MHz. 
 
 ![antenna](/examples/images/antenna.jpg)
-
-The custom blocks send UDP packets that are compatible with the `j1708_logger.py` script for https://github.com/TruckHacking/py-hv-networks and the `j1708dump.py` command of https://github.com/TruckHacking/plc4trucksduck, e.g. you can dump PLC traffic with `j1708dump.py --interface=plc` while running the flow graphs in `/examples`.
 
 # Signal
 
@@ -69,6 +67,8 @@ sudo ldconfig
 Run the flow graphs in `/examples` with GNU Radio Companion to view messages in the console panel. There are three different methods to choose from. If enabled on the decoder blocks, view the decoded output over UDP with a network sniffer (e.g. Wireshark) or with the `j1708dump.py --interface=plc` command of https://github.com/TruckHacking/plc4trucksduck. Successful message decodes of the message body will look like:
 
 ![message_printout](/examples/images/message_printout.png)
+
+The custom blocks send UDP packets that are compatible with the `j1708_logger.py` script for https://github.com/TruckHacking/py-hv-networks and the `j1708dump.py` command of https://github.com/TruckHacking/plc4trucksduck, e.g. you can dump PLC traffic with `j1708dump.py --interface=plc` while running the flow graphs in `/examples`.
 
 ## Method 1:
 * Correlates J2497 signal with a reference signal
