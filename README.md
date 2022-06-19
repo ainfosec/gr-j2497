@@ -70,7 +70,7 @@ Run the flow graphs in `/examples` with GNU Radio Companion to view messages in 
 
 The custom blocks send UDP packets that are compatible with the `j1708_logger.py` script for https://github.com/TruckHacking/py-hv-networks and the `j1708dump.py` command of https://github.com/TruckHacking/plc4trucksduck, e.g. you can dump PLC traffic with `j1708dump.py --interface=plc` while running the flow graphs in `/examples`.
 
-## Method 1:
+## Receive Method 1:
 * Correlates J2497 signal with a reference signal
 * Works best with 203 kHz as the reference (the frequency in the chirp at the phase transition)
 * Ignores the ASK preamble
@@ -81,7 +81,7 @@ The custom blocks send UDP packets that are compatible with the `j1708_logger.py
 
 ![method1_correlation](/examples/images/method1_correlation.png)
 
-## Method 2:
+## Receive Method 2:
 * Correlates J2497 signal with a complete chirp reference signal to detect burst start and stop
 * Correlates with 203 kHz snippet to decode 0's and 1's in the body PSK
 * Ignores the ASK preamble
@@ -91,7 +91,7 @@ The custom blocks send UDP packets that are compatible with the `j1708_logger.py
 
 ![method2_correlation](/examples/images/method2_correlation.png)
 
-## Method 3:
+## Receive Method 3:
 * Uses Quadrature Demod block and measures the phase-angle of the signal
 * Keys in on phase discontinuities between chirps to decode the body PSK
 * Ignores the ASK preamble
