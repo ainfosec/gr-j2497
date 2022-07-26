@@ -56,7 +56,7 @@ sudo apt-get install python-scipy
 cd gr-j2497
 mkdir build
 cd build
-cmake ..
+cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr ..
 make
 sudo make install
 sudo ldconfig
