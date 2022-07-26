@@ -36,4 +36,5 @@ from .j2497_decoder_for_tagger import j2497_decoder_for_tagger
 from .j2497_tagger import j2497_tagger
 from .J2497_decoder import J2497_decoder
 from .J2497_decoder_corr import J2497_decoder_corr
+from .encoder import encoder
 #

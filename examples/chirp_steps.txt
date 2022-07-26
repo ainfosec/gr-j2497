@@ -1,0 +1,7 @@
+import numpy as np
+from scipy.signal import chirp
+
+samp_rate=8000000
+a=(np.hstack((chirp(np.linspace(0,63E-6,int(63E-6*samp_rate)),f0=203E3,f1=400E3,t1=63E-6,phi=0,method='linear')*1,chirp(np.linspace(63E-6,67E-6,int(4E-6*samp_rate)),f0=400E3,f1=100E3,t1=67E-6,phi=0,method='linear')*1,chirp(np.linspace(67E-6,100E-6,int(33E-6*samp_rate)),f0=100E3,f1=203E3,t1=100E-6,phi=-90,method='linear')*1)))
+b=np.asarray(a, dtype=np.complex64)
+b.tofile('/home/user/chirp_test_8MSps.iq')
