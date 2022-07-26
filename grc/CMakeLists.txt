@@ -23,5 +23,6 @@ install(FILES
     J2497_J2497_decoder.xml
     J2497_J2497_decoder_corr.xml
     J2497_j2497_tagger.xml
-    J2497_j2497_decoder_for_tagger.xml DESTINATION share/gnuradio/grc/blocks
+    J2497_j2497_decoder_for_tagger.xml
+    J2497_encoder.xml DESTINATION share/gnuradio/grc/blocks
 )

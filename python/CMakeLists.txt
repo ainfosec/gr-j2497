@@ -37,7 +37,8 @@ GR_PYTHON_INSTALL(
     J2497_decoder.py
     J2497_decoder_corr.py
     j2497_tagger.py
-    j2497_decoder_for_tagger.py DESTINATION ${GR_PYTHON_DIR}/J2497
+    j2497_decoder_for_tagger.py
+    encoder.py DESTINATION ${GR_PYTHON_DIR}/J2497
 )
 
 ########################################################################
