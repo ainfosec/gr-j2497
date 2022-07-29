@@ -47,7 +47,7 @@ class encoder(gr.sync_block):
             in_sig=[],
             out_sig=[numpy.complex64])
 
-        self.data_chirp_data = encoder.generate_single_chirp(sample_rate)
+        self.data_chirp_data = encoder.generate_single_complex_chirp(sample_rate)
         self.preamble_chirp_data = self.data_chirp_data
         self.replay_data = numpy.zeros(0,numpy.complex64)
         self.transmit = False
@@ -64,21 +64,25 @@ class encoder(gr.sync_block):
         self.count = 0
 
     @staticmethod
-    def generate_single_chirp(samp_rate):
+    def generate_single_chirp(samp_rate, phase=0):
         wave = numpy.hstack((
             numpy.tile(numpy.hstack((
                 chirp(numpy.linspace(0, 63E-6, int(63E-6 * samp_rate)),
-                    f0=203E3, f1=400E3, t1=63E-6, phi=-90, method='linear'),
+                    f0=203E3, f1=400E3, t1=63E-6, phi=-90 + phase, method='linear'),
                 chirp(numpy.linspace(63E-6, 67E-6, int(4E-6 * samp_rate)),
-                    f0=400E3, f1=100E3, t1=67E-6, phi=-90, method='linear'),
+                    f0=400E3, f1=100E3, t1=67E-6, phi=-90 + phase, method='linear'),
                 chirp(numpy.linspace(67E-6, 100E-6, int(33E-6 * samp_rate)),
-                    f0=100E3, f1=200E3, t1=100E-6, phi=-90, method='linear')
+                    f0=100E3, f1=200E3, t1=100E-6, phi=-90 + phase, method='linear')
             )), 1)
         ))
         target_len = int(100e-6 * samp_rate)
         wave = numpy.append(wave, numpy.zeros(numpy.max([0, target_len - len(wave)])))
-        wave = numpy.asarray(wave, dtype=numpy.complex64)  # Im == 0
         return wave
+
+    @staticmethod
+    def generate_single_complex_chirp(samp_rate):
+        return        encoder.generate_single_chirp(samp_rate) \
+               + 1j * encoder.generate_single_chirp(samp_rate, phase=-90)
 
     def work(self, input_items, output_items):
         in0 = 0
