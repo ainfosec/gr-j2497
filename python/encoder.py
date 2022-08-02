@@ -120,7 +120,7 @@ class encoder(gr.sync_block):
 
     def checksum(self):
         msg = binascii.unhexlify(self.mid_hex + self.data_hex)
-        return struct.pack('b', self.toSignedChar(~reduce(lambda x,y: (x + y) & 0xFF, list(msg)) + 1))[0]
+        return ord(struct.pack('b', self.toSignedChar(~ord(reduce(lambda x,y: chr((ord(x) + ord(y)) & 0xFF), list(msg))) + 1))[0])
 
     def generateMsg(self):
         """ Generates the IQ data for the J2497 message.
