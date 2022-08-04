@@ -41,7 +41,7 @@ class encoder(gr.sync_block):
     TODO list of messages to send on a loop
     TODO delete filepath options for preamble and data chirps
     """
-    def __init__(self, mid, data, interval, filepath_preamble, filepath_data, sample_rate):
+    def __init__(self, mid, data, interval, sample_rate):
         gr.sync_block.__init__(self,
             name="J2497_encoder",
             in_sig=[],

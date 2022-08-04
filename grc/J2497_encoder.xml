@@ -4,7 +4,7 @@
   <key>J2497_encoder</key>
   <category>[J2497]</category>
   <import>import J2497</import>
-  <make>J2497.encoder($mid,$data,$interval,$filepath_preamble,$filepath_data,$sample_rate)</make>
+  <make>J2497.encoder($mid,$data,$interval,$sample_rate)</make>
   
   <param>
     <name>MID (Hex)</name>
@@ -23,18 +23,6 @@
     <key>interval</key>
     <value>1.0</value>
     <type>float</type>
-  </param>
-  <param>    
-    <name>Preamble Chirp File</name>
-    <key>filepath_preamble</key>
-    <value></value>
-    <type>file_open</type>
-  </param>
-  <param>
-    <name>Data Chirp File</name>
-    <key>filepath_data</key>
-    <value></value>
-    <type>file_open</type>
   </param>
   <param>
     <name>Sample Rate</name>
