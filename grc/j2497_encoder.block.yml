@@ -4,7 +4,7 @@ category: '[j2497]'
 
 templates:
   imports: import j2497
-  make: j2497.encoder(${mid},${data},${interval},${filepath_preamble},${filepath_data},${sample_rate})
+  make: j2497.encoder(${mid},${data},${interval},${sample_rate})
 
 parameters:
 - id: mid
@@ -19,12 +19,6 @@ parameters:
   label: Interval (s)
   dtype: float
   default: 1.0
-- id: filepath_preamble
-  label: Preamble Chirp File
-  dtype: file_open
-- id: filepath_data
-  label: Data Chirp File
-  dtype: file_open
 - id: sample_rate
   label: Sample Rate
   dtype: float
