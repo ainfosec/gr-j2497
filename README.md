@@ -1,6 +1,6 @@
 # gr-j2497
 
-This GNU Radio out-of-tree module contains flow graphs with custom blocks for reading PLC4TRUCKS traffic. SAE J2497 defines the method for implementing a bidirectional, serial communications link over the vehicle power supply line among modules containing microcomputers. SAE J2497 (PLC4TRUCKS) is essentially an alternative physical layer for J1708 that encodes payloads using spread-spectrum chirps centered on the 12-volt power line. The PLC bus traffic can be sniffed reliably with an active antenna from several feet away as entailed in CVE-2020-14514 and the 2020 DEF CON 28 talk "Power Line Truck Hacking: 2TOOLS4PLC4TRUCKS":
+This GNU Radio out-of-tree module contains flow graphs with custom blocks for reading and writing PLC4TRUCKS traffic. SAE J2497 defines the method for implementing a bidirectional, serial communications link over the vehicle power supply line among modules containing microcomputers. SAE J2497 (PLC4TRUCKS) is essentially an alternative physical layer for J1708 that encodes payloads using spread-spectrum chirps centered on the 12-volt power line. The PLC bus traffic can be sniffed reliably with an active antenna from several feet away as entailed in CVE-2020-14514 and the 2020 DEF CON 28 talk "Power Line Truck Hacking: 2TOOLS4PLC4TRUCKS":
 - https://nvd.nist.gov/vuln/detail/CVE-2020-14514
 - http://www.nmfta.org/documents/ctsrp/Power_Line_Truck_Hacking_2TOOLS4PLC4TRUCKS.pdf?v=1
 
@@ -25,9 +25,11 @@ The gr-j2497 maint-3.7 branch is compatible with GNU Radio 3.7 and the maint-3.8
 
 # Hardware
 
-This project is an implementation of a J2497 (PLC4TRUCKS) receiver that can be used with any GNU Radio SDR capable of receiving 100 kHz - 400 kHz. For RTL-SDR and others, this will require an upconverter. Below is an example receiver configuration using an active antenna, Ham It Up, and an RTL-SDR to upconvert the signals to 125 MHz. 
+This project contains an implementation of a J2497 (PLC4TRUCKS) receiver that can be used with any GNU Radio SDR capable of receiving 100 kHz - 400 kHz. For RTL-SDR and others, this will require an upconverter. Below is an example receiver configuration using an active antenna, Ham It Up, and an RTL-SDR to upconvert the signals to 125 MHz. 
 
 ![antenna](/examples/images/antenna.jpg)
+
+J2497 signals can be generated with most SDRs including the HackRF, USRP B205mini & B210, and fl2k. The HackRF and fl2k are capable of transmitting the signals directly at baseband. SDRs that are unable to tune to such low frequencies can use the Ham It Up in reverse as a downconverter to translate signals centered around 125 MHz down to baseband.
 
 # Signal
 
@@ -70,7 +72,7 @@ Run the flow graphs in `/examples` with GNU Radio Companion to view messages in 
 
 The custom blocks send UDP packets that are compatible with the `j1708_logger.py` script for https://github.com/TruckHacking/py-hv-networks and the `j1708dump.py` command of https://github.com/TruckHacking/plc4trucksduck, e.g. you can dump PLC traffic with `j1708dump.py --interface=plc` while running the flow graphs in `/examples`.
 
-## Receive Method 1:
+## Receive Method 1: Correlation with CW
 * Correlates J2497 signal with a reference signal
 * Works best with 203 kHz as the reference (the frequency in the chirp at the phase transition)
 * Ignores the ASK preamble
@@ -81,7 +83,7 @@ The custom blocks send UDP packets that are compatible with the `j1708_logger.py
 
 ![method1_correlation](/examples/images/method1_correlation.png)
 
-## Receive Method 2:
+## Receive Method 2: Correlation with Chirp
 * Correlates J2497 signal with a complete chirp reference signal to detect burst start and stop
 * Correlates with 203 kHz snippet to decode 0's and 1's in the body PSK
 * Ignores the ASK preamble
@@ -91,7 +93,7 @@ The custom blocks send UDP packets that are compatible with the `j1708_logger.py
 
 ![method2_correlation](/examples/images/method2_correlation.png)
 
-## Receive Method 3:
+## Receive Method 3: Instantaneous Frequency
 * Uses Quadrature Demod block and measures the phase-angle of the signal
 * Keys in on phase discontinuities between chirps to decode the body PSK
 * Ignores the ASK preamble
@@ -101,6 +103,13 @@ The custom blocks send UDP packets that are compatible with the `j1708_logger.py
 ![method3](/examples/images/method3.png)
 
 ![method3_if](/examples/images/method3_if.png)
+
+## Transmit Method 1: HackRF Direct
+
+## Transmit Method 2: fl2k Direct
+
+## Transmit Method 3: SDR with Downconverter
+
 
 # License
 
