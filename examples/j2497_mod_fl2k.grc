@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>j2497_mod</value>
+      <value>j2497_mod_fl2k</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -132,7 +132,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(64, 180)</value>
+      <value>(216, 188)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -183,7 +183,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(312, 192)</value>
+      <value>(424, 200)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -226,7 +226,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(664, 196)</value>
+      <value>(776, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -277,7 +277,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(504, 196)</value>
+      <value>(616, 196)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -332,7 +332,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(808, 180)</value>
+      <value>(920, 180)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -371,7 +371,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(884, 272)</value>
+      <value>(1004, 264)</value>
     </param>
     <param>
       <key>_rotation</key>

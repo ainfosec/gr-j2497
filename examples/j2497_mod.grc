@@ -124,7 +124,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(368, 12)</value>
+      <value>(192, 12)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -187,7 +187,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(504, 12)</value>
+      <value>(320, 12)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -253,16 +253,12 @@
       <value>"00"</value>
     </param>
     <param>
-      <key>filepath_data</key>
-      <value>/home/user1/FISSURE/Custom_Blocks/maint-3.7/gr-j2497/examples/chirp_test_8MSps.iq</value>
-    </param>
-    <param>
       <key>_enabled</key>
       <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(216, 164)</value>
+      <value>(120, 156)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -287,10 +283,6 @@
     <param>
       <key>minoutbuf</key>
       <value>0</value>
-    </param>
-    <param>
-      <key>filepath_preamble</key>
-      <value>/home/user1/FISSURE/Custom_Blocks/maint-3.7/gr-j2497/examples/chirp_test_8MSps.iq</value>
     </param>
     <param>
       <key>sample_rate</key>
@@ -325,7 +317,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(976, 724)</value>
+      <value>(888, 724)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -368,7 +360,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(816, 740)</value>
+      <value>(728, 740)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -419,7 +411,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(624, 712)</value>
+      <value>(536, 712)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -534,7 +526,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(688, 396)</value>
+      <value>(536, 396)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1485,7 +1477,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(688, 132)</value>
+      <value>(536, 140)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1616,7 +1608,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(688, 620)</value>
+      <value>(536, 620)</value>
     </param>
     <param>
       <key>gui_hint</key>
@@ -2619,7 +2611,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(688, 260)</value>
+      <value>(536, 268)</value>
     </param>
     <param>
       <key>_rotation</key>

@@ -58,7 +58,7 @@ sudo apt-get install python-scipy
 cd gr-j2497
 mkdir build
 cd build
-cmake ..
+cmake .. # or cmake -DCMAKE_INSTALL_PREFIX=<path_to_install> .. # (/usr or /usr/local)
 make
 sudo make install
 sudo ldconfig
@@ -105,11 +105,26 @@ The custom blocks send UDP packets that are compatible with the `j1708_logger.py
 ![method3_if](/examples/images/method3_if.png)
 
 ## Transmit Method 1: HackRF Direct
+* Transmits a J2497 message directly at 100-400 kHz for a HackRF
+* The J2497 Generator block has parameters for the MID field, Data field, and transmit interval
+* The bits, MID, Data, and Checksum are printed for each transmitted message
+
+![j2497_mod_hackrfdirect](/examples/images/j2497_mod_hackrfdirect.png)
+
+![mod_output](/examples/images/mod_output.png)
 
 ## Transmit Method 2: fl2k Direct
+* Transmits a J2497 message directly at 100-400 kHz for the fl2k
+* Run `fl2k_tcp -a 0.0.0.0 -s 7777777 -p 31337 -b 8` from a terminal to feed data to the fl2k
+
+![j2497_mod_fl2k](/examples/images/j2497_mod_fl2k.png)
 
 ## Transmit Method 3: SDR with Downconverter
+* Transmits a J2497 message at an intermediate frequency (125 MHz) to feed into a downconverter to produce the 100-400 kHz signals
+* For SDRs such as the HackRF, LimeSDR, USRP, BladeRF, etc.
+* Output power may be limited by downconverter specifications
 
+![j2497_mod](/examples/images/j2497_mod.png)
 
 # License
 
