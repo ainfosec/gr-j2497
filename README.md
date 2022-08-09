@@ -66,7 +66,8 @@ sudo ldconfig
 
 # Usage
 
-Run the flow graphs in `/examples` with GNU Radio Companion to view messages in the console panel. There are three different methods to choose from. If enabled on the decoder blocks, view the decoded output over UDP with a network sniffer (e.g. Wireshark) or with the `j1708dump.py --interface=plc` command of https://github.com/TruckHacking/plc4trucksduck. Successful message decodes of the message body will look like:
+## Receiving
+Run the flow graphs in `/examples` with GNU Radio Companion to view messages in the console panel. There are three different receive methods to choose from. If enabled on the decoder blocks, view the decoded output over UDP with a network sniffer (e.g. Wireshark) or with the `j1708dump.py --interface=plc` command of https://github.com/TruckHacking/plc4trucksduck. Successful message decodes of the message body will look like:
 
 ![message_printout](/examples/images/message_printout.png)
 
@@ -122,7 +123,7 @@ The custom blocks send UDP packets that are compatible with the `j1708_logger.py
 ## Transmit Method 3: SDR with Downconverter
 * Transmits a J2497 message at an intermediate frequency (125 MHz) to feed into a downconverter to produce the 100-400 kHz signals
 * For SDRs such as the HackRF, LimeSDR, USRP, BladeRF, etc.
-* Output power may be limited by downconverter specifications
+* The final output power may be limited by the downconverter specifications
 
 ![j2497_mod](/examples/images/j2497_mod.png)
 
