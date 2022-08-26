@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: Custom
     cmake_opt: ''
     comment: ''
@@ -51,8 +52,10 @@ blocks:
     gui_hint: ''
     label: tx_freq
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
+    outputmsgname: value
     rangeType: float
+    showports: 'False'
     start: 100e3
     step: 100e3
     stop: 150e6
@@ -72,8 +75,10 @@ blocks:
     gui_hint: ''
     label: tx_gain
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
+    outputmsgname: value
     rangeType: float
+    showports: 'False'
     start: '0'
     step: '1'
     stop: '80'
@@ -93,7 +98,7 @@ blocks:
     alias: ''
     append: 'False'
     comment: ''
-    file: ''
+    file: /tmp/test.bin
     type: complex
     unbuffered: 'False'
     vlen: '1'
@@ -129,8 +134,6 @@ blocks:
     alias: ''
     comment: ''
     data: '00'
-    filepath_data: /home/user/chirp_test_8MSps.iq
-    filepath_preamble: /home/user/chirp_test_8MSps.iq
     interval: '1'
     maxoutbuf: '0'
     mid: 0A
@@ -143,40 +146,6 @@ blocks:
     coordinate: [89, 191]
     rotation: 0
     state: true
-- name: limesdr_sink_0
-  id: limesdr_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    allow_tcxo_dac: '0'
-    analog_bandw_ch0: '0'
-    analog_bandw_ch1: 5e6
-    calibr_bandw_ch0: 5e6
-    calibr_bandw_ch1: 5e6
-    channel_mode: '0'
-    comment: ''
-    dacVal: '125'
-    digital_bandw_ch0: '0'
-    digital_bandw_ch1: '0'
-    filename: ''
-    gain_dB_ch0: int(tx_gain)
-    gain_dB_ch1: '30'
-    length_tag_name: ''
-    nco_freq_ch0: '0'
-    nco_freq_ch1: '0'
-    oversample: '0'
-    pa_path_ch0: '255'
-    pa_path_ch1: '1'
-    rf_freq: tx_freq
-    samp_rate: samp_rate
-    serial: ''
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [540, 482]
-    rotation: 0
-    state: disabled
 - name: mmse_resampler_xx_0
   id: mmse_resampler_xx
   parameters:
@@ -455,7 +424,7 @@ blocks:
     bus_structure: null
     coordinate: [541, 161]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: qtgui_time_sink_x_0_0_0_1
   id: qtgui_time_sink_x
   parameters:
@@ -553,6 +522,26 @@ blocks:
     coordinate: [541, 565]
     rotation: 0
     state: enabled
+- name: soapy_limesdr_sink_0
+  id: soapy_limesdr_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: '0.0'
+    center_freq: tx_freq
+    comment: ''
+    dev_args: ''
+    freq_correction: '0'
+    gain: int(tx_gain)
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 480.0]
+    rotation: 0
+    state: disabled
 - name: uhd_usrp_sink_0
   id: uhd_usrp_sink
   parameters:
@@ -698,6 +687,38 @@ blocks:
     gain7: '0'
     gain8: '0'
     gain9: '0'
+    gain_type0: default
+    gain_type1: default
+    gain_type10: default
+    gain_type11: default
+    gain_type12: default
+    gain_type13: default
+    gain_type14: default
+    gain_type15: default
+    gain_type16: default
+    gain_type17: default
+    gain_type18: default
+    gain_type19: default
+    gain_type2: default
+    gain_type20: default
+    gain_type21: default
+    gain_type22: default
+    gain_type23: default
+    gain_type24: default
+    gain_type25: default
+    gain_type26: default
+    gain_type27: default
+    gain_type28: default
+    gain_type29: default
+    gain_type3: default
+    gain_type30: default
+    gain_type31: default
+    gain_type4: default
+    gain_type5: default
+    gain_type6: default
+    gain_type7: default
+    gain_type8: default
+    gain_type9: default
     len_tag_name: ''
     lo_export0: 'False'
     lo_export1: 'False'
@@ -766,38 +787,6 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     nchan: '1'
-    norm_gain0: 'False'
-    norm_gain1: 'False'
-    norm_gain10: 'False'
-    norm_gain11: 'False'
-    norm_gain12: 'False'
-    norm_gain13: 'False'
-    norm_gain14: 'False'
-    norm_gain15: 'False'
-    norm_gain16: 'False'
-    norm_gain17: 'False'
-    norm_gain18: 'False'
-    norm_gain19: 'False'
-    norm_gain2: 'False'
-    norm_gain20: 'False'
-    norm_gain21: 'False'
-    norm_gain22: 'False'
-    norm_gain23: 'False'
-    norm_gain24: 'False'
-    norm_gain25: 'False'
-    norm_gain26: 'False'
-    norm_gain27: 'False'
-    norm_gain28: 'False'
-    norm_gain29: 'False'
-    norm_gain3: 'False'
-    norm_gain30: 'False'
-    norm_gain31: 'False'
-    norm_gain4: 'False'
-    norm_gain5: 'False'
-    norm_gain6: 'False'
-    norm_gain7: 'False'
-    norm_gain8: 'False'
-    norm_gain9: 'False'
     num_mboards: '1'
     otw: ''
     samp_rate: samp_rate
@@ -810,6 +799,7 @@ blocks:
     sd_spec6: ''
     sd_spec7: ''
     show_lo_controls: 'False'
+    start_time: '-1.0'
     stream_args: ''
     stream_chans: '[]'
     sync: sync
@@ -828,16 +818,17 @@ blocks:
     bus_structure: null
     coordinate: [542, 337]
     rotation: 0
-    state: disabled
+    state: enabled
 
 connections:
 - [blocks_head_0, '0', blocks_file_sink_0, '0']
-- [j2497_encoder_0, '0', limesdr_sink_0, '0']
 - [j2497_encoder_0, '0', mmse_resampler_xx_0, '0']
 - [j2497_encoder_0, '0', osmosdr_sink_0, '0']
 - [j2497_encoder_0, '0', qtgui_time_sink_x_0_0_0_1, '0']
+- [j2497_encoder_0, '0', soapy_limesdr_sink_0, '0']
 - [j2497_encoder_0, '0', uhd_usrp_sink_0, '0']
 - [mmse_resampler_xx_0, '0', blocks_head_0, '0']
 
 metadata:
   file_format: 1
+  grc_version: v3.11.0.0git-207-gcaa7e7f1

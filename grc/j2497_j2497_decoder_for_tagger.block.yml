@@ -3,7 +3,7 @@ label: j2497_decoder_for_tagger
 category: '[j2497]'
 
 templates:
-  imports: import j2497
+  imports: import gnuradio.j2497 as j2497
   make: j2497.j2497_decoder_for_tagger(${do_udp},${udp_port})
 
 

@@ -3,7 +3,7 @@ label: J2497_decoder_corr
 category: '[j2497]'
 
 templates:
-  imports: import j2497
+  imports: import gnuradio.j2497 as j2497
   make: j2497.J2497_decoder_corr(${do_udp},${udp_port})
 
 parameters:

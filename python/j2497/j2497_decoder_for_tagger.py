@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
 # Copyright 2020 gr-j2497 author.
@@ -25,13 +25,13 @@ from gnuradio import gr
 import pmt
 import socket
 
-class J2497_decoder_corr(gr.sync_block):
+class j2497_decoder_for_tagger(gr.sync_block):
     """
-    docstring for block J2497_decoder_corr
+    docstring for block j2497_decoder_for_tagger
     """
     def __init__(self,do_udp,udp_port):
         gr.sync_block.__init__(self,
-            name="J2497_decoder_corr",
+            name="j2497_decoder_for_tagger",
             in_sig=[numpy.float32],
             out_sig=[])
         
@@ -59,15 +59,15 @@ class J2497_decoder_corr(gr.sync_block):
         tags = self.get_tags_in_window(0, 0, in0_len, pmt.string_to_symbol("burst"))
 
         # Tag Exists
-        for tag in tags:  #.offset, .key, .value    
-                    
+        for tag in tags:  #.offset, .key, .value
+            
             # Record on Start
-            if str(tag.value) == "#t":
+            if str(tag.value) == "start":
                 self.start_tag = tag.offset
                 self.if_data = numpy.append(self.if_data, in0[self.start_tag-window_start:])
 
             # Stop Recording on Stop
-            if str(tag.value) == "#f":
+            if str(tag.value) == "end":
                 self.end_tag = tag.offset
                 burst_size = self.end_tag - self.start_tag
 
@@ -78,11 +78,11 @@ class J2497_decoder_corr(gr.sync_block):
                     # Multiple Windows
                     if len(self.if_data) > 0:
                         self.if_data = numpy.append(self.if_data, in0[:self.end_tag-window_start])
-
+                        
                     # One Window
                     else:
                         self.if_data = in0[self.start_tag-window_start:self.end_tag-window_start]
-                        
+
                 # Ignore and Reset
                 else:
                     self.start_tag = 0
@@ -132,22 +132,23 @@ class J2497_decoder_corr(gr.sync_block):
             # Find Four Consecutive Peaks (Sync)
             sync_found = False
             prev_peak_amplitude = peak_amplitude
-            for n in range(1,4): 
-                               
+            
+            for n in range(1,4):
+                
                 # Check for Peak within 50% of Previous Peak
                 if self.if_data[peak_sample+n*100] > 0.5*prev_peak_amplitude:
                     prev_peak_amplitude = self.if_data[peak_sample+n*100]
-                    sync_found = True                    
+                    sync_found = True
                 else:
                     sync_found = False
                     break
                 
             # Sync Found
             if sync_found is True:
-                                
+                
                 # Get Bitstream from Peaks
-                for n in range(peak_sample,len(self.if_data),100):     
-                                   
+                for n in range(peak_sample,len(self.if_data),100):
+                    
                     # High Peak
                     if self.if_data[n] > 0.5*prev_peak_amplitude:
                         prev_peak_amplitude = self.if_data[n]
@@ -203,7 +204,7 @@ class J2497_decoder_corr(gr.sync_block):
                     bit_counter = 0
 
             # Detect New Start Bit
-            else:               
+            else:                
                 if bits[n] == "0" and start_bit is False:
                     start_bit = True
 

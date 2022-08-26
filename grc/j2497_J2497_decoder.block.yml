@@ -3,7 +3,7 @@ label: J2497_decoder
 category: '[j2497]'
 
 templates:
-  imports: import j2497
+  imports: import gnuradio.j2497 as j2497
   make: j2497.J2497_decoder(${if_peak_threshold},${if_peak_offset},${do_udp},${udp_port})
 
 parameters:

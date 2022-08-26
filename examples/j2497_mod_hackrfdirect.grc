@@ -1,6 +1,7 @@
 options:
   parameters:
     author: ''
+    catch_exceptions: 'True'
     category: Custom
     cmake_opt: ''
     comment: ''
@@ -51,8 +52,10 @@ blocks:
     gui_hint: ''
     label: tx_gain
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
+    outputmsgname: value
     rangeType: float
+    showports: 'False'
     start: '0'
     step: '1'
     stop: '80'
@@ -133,8 +136,6 @@ blocks:
     alias: ''
     comment: ''
     data: '00'
-    filepath_data: /home/user/chirp_test_8MSps.iq
-    filepath_preamble: /home/user/chirp_test_8MSps.iq
     interval: '1'
     maxoutbuf: '0'
     mid: 0A
@@ -516,3 +517,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: v3.11.0.0git-207-gcaa7e7f1

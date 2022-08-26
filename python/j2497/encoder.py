@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # MIT License
 #
@@ -153,9 +153,9 @@ class encoder(gr.sync_block):
         data_len = len(data)
 
         try:
-            print('Message #' + str(int(self.count)) + ': ' + data + ' | MID: 0x' + self.mid_hex + ' | Data: 0x' + self.data_hex + ' | Checksum: 0x' + '%0*X' % (2,int(checksum[::-1],2)) )
+            print(('Message #' + str(int(self.count)) + ': ' + data + ' | MID: 0x' + self.mid_hex + ' | Data: 0x' + self.data_hex + ' | Checksum: 0x' + '%0*X' % (2,int(checksum[::-1],2)) ))
         except:
-            print('Message #' + str(int(self.count)) + ': ' + data)
+            print(('Message #' + str(int(self.count)) + ': ' + data))
 
         # Create the Preamble Signal
         self.replay_data = numpy.zeros(0,numpy.complex64)
