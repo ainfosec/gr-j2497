@@ -21,7 +21,7 @@ A great resource on J2497 and truck hacking can be found at:
 An open-source tool for decoding the J2497 messages to a more user-friendly format (requires the latest J1587 and J1708 specifications) can be downloaded at:
 - https://github.com/ainfosec/pretty_j1587
 
-The gr-j2497 maint-3.7 branch is compatible with GNU Radio 3.7 and the maint-3.8 branch is compatible with GNU Radio 3.8.
+The gr-j2497 maint-3.7 branch is compatible with GNU Radio 3.7, maint-3.8 branch is compatible with GNU Radio 3.8 and maint-3.10 branch is compatible with GNU Radio >= 3.10.
 
 # Hardware
 
